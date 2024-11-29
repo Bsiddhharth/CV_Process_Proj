@@ -2,6 +2,7 @@
 import streamlit as st
 import cv_question
 import cv_short
+import cv_analyzer_search
 from logger import setup_logger
 
 # def initialize_session_state():
@@ -32,7 +33,6 @@ def main():
     # Setup logger for app
     app_logger = setup_logger('app_logger', 'app.log')
     
-    # Initialize session state
     # initialize_session_state()
     
     # Sidebar
@@ -46,7 +46,7 @@ def main():
         app_logger.info("Session state reset")
     
     # Navigation
-    page = st.sidebar.radio("Go to", ["CV Shortlisting", "Interview Questions"])
+    page = st.sidebar.radio("Go to", ["CV Shortlisting", "Interview Questions","CV Analyser + JobSearch"])
     app_logger.info(f"Page selected: {page}")
     
     try:
@@ -62,6 +62,9 @@ def main():
             # else:
                 app_logger.info("Navigating to Interview Questions")
                 cv_question.create_interview_questions_page()
+
+        elif page == "CV Analyser + JobSearch":
+            cv_analyzer_search.Job_assistant()
                 
     except Exception as e:
         app_logger.error(f"Error occurred: {e}")

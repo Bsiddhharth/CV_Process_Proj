@@ -1,18 +1,41 @@
-langchain
-python-dotenv
-ipykernel
-langchain-community
-streamlit
-pypdf
-pymupdf
-langchain-text-splitters
-langchain-openai
-chromadb
-sentence_transformers
-langchain_huggingface
-faiss-cpu
-langchain_chroma
-openai
-langchain-groq
-pdfplumber
-prettytable
+# langchain
+# python-dotenv
+# ipykernel
+# langchain-community
+# streamlit
+# pypdf
+# pymupdf
+# langchain-text-splitters
+# langchain-openai
+# chromadb
+# sentence_transformers
+# langchain_huggingface
+# faiss-cpu
+# langchain_chroma
+# openai
+# langchain-groq
+# pdfplumber
+# prettytable
+# python-jobspy
+# scikit-learn
+
+langchain==0.3.7
+python-dotenv==1.0.1
+ipykernel==6.29.5
+langchain-community==0.3.5
+streamlit==1.39.0
+pypdf==5.1.0
+PyMuPDF==1.24.13
+langchain-text-splitters==0.3.2
+langchain-openai==0.2.5
+chromadb==0.5.17
+sentence_transformers==3.2.1
+langchain-huggingface==0.1.2
+faiss-cpu==1.9.0
+langchain-chroma==0.1.4
+openai==1.53.0
+langchain-groq==0.2.1
+pdfplumber==0.11.4
+prettytable==3.12.0
+python-jobspy==1.1.75
+scikit-learn==1.5.2

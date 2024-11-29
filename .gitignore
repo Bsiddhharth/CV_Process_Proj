@@ -10,7 +10,8 @@ __pycache__/
 
 # Ignore specific file (like extraction.pydantic)
 extraction_pydantic.py
-cv_quest.py
+cv_quest(with main).py
 logger.py
+cv_job_reco2.py
 
 app.log
