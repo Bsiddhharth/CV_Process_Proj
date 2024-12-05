@@ -29,8 +29,8 @@ def make_clickable_link(link):
 groq_api_key = st.secrets["GROQ_API_KEY"]
 
 # Configure logging
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+# logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+# logger = logging.getLogger(__name__)
 
 class JobSuggestionEngine:
     def __init__(self):
@@ -48,7 +48,7 @@ class JobSuggestionEngine:
                 Extracting JSON from LLM
         """
         try:
-            logger.debug("Extracting JSON from LLM response")
+            # logger.debug("Extracting JSON from LLM response")
             # Clean and extract JSON
             json_match = re.search(r'\{.*\}', text, re.DOTALL)
             if json_match:
@@ -57,12 +57,12 @@ class JobSuggestionEngine:
         
         except Exception as e:
             st.error(f"JSON Extraction Error: {e}")
-            logger.error(f"JSON Extraction Error: {e}")
+            # logger.error(f"JSON Extraction Error: {e}")
             return {}
     
     def generate_job_suggestions(self, resume_data: cv) -> List[Dict[str, str]]:
 
-        logger.info("Generating job suggestions based on resume")
+        # logger.info("Generating job suggestions based on resume")
 
         prompt = f"""Based on the following resume details, provide job suggestions:
 
@@ -91,7 +91,7 @@ class JobSuggestionEngine:
             """
         try:
 
-            logger.debug(f"Calling Groq API with prompt: {prompt[:100]}...") # start of api call
+            # logger.debug(f"Calling Groq API with prompt: {prompt[:100]}...") # start of api call
             
             # API call to the Groq client for chat completions
             chat_completion = self.client.chat.completions.create(
@@ -111,14 +111,14 @@ class JobSuggestionEngine:
             response_text = chat_completion.choices[0].message.content
             suggestions_data = self._extract_json(response_text)
 
-            logger.info(f"Job suggestions generated: {len(suggestions_data.get('job_suggestions', []))} found")
+            # logger.info(f"Job suggestions generated: {len(suggestions_data.get('job_suggestions', []))} found")
             
             # Return job suggestions, if not found -> empty list 
             return suggestions_data.get('job_suggestions', [])
         
         except Exception as e:
             st.error(f"Job Suggestion Error: {e}")
-            logger.error(f"Job Suggestion Error: {e}")
+            # logger.error(f"Job Suggestion Error: {e}")
             return []
 
 def Job_assistant():
@@ -181,14 +181,14 @@ def Job_assistant():
                 try:
                     # Extract resume text
                     resume_text = process_file(uploaded_resume)
-                    logger.info("Resume extracted successfully")
+                    # logger.info("Resume extracted successfully")
                     
                     # Extract structured CV data
                     candidates = extract_cv_data(resume_text)
                     
                     if not candidates:
                         st.error("Could not extract resume data")
-                        logger.error("No candidates extracted from resume")
+                        # logger.error("No candidates extracted from resume")
                         st.stop()
                     
                     st.session_state.resume_data = candidates[0]
@@ -201,17 +201,17 @@ def Job_assistant():
                 
                 except Exception as e:
                     st.error(f"Resume Processing Error: {e}")
-                    logger.error(f"Resume Processing Error: {e}")
+                    # logger.error(f"Resume Processing Error: {e}")
                     st.stop()
             
             # Initialize Job Suggestion Engine
             if st.session_state.resume_data:
                 suggestion_engine = JobSuggestionEngine()
-                logger.info("Job_Suggestion_Engine initialized")
+                # logger.info("Job_Suggestion_Engine initialized")
                 
                 # Generate Job Suggestions
                 job_suggestions = suggestion_engine.generate_job_suggestions(resume_data)
-                logger.info(f"Generated {len(job_suggestions)} job suggestions")
+                # logger.info(f"Generated {len(job_suggestions)} job suggestions")
 
                 st.session_state.job_suggestions = job_suggestions
 
@@ -227,14 +227,14 @@ def Job_assistant():
             try:
                     # Extract resume text
                     resume_text = process_file(uploaded_resume)
-                    logger.info("Resume text extracted again for improvement suggestions")
+                    # logger.info("Resume text extracted again for improvement suggestions")
 
                     # Initialize Resume Improvement Engine
                     improvement_engine = ResumeImprovementEngine()
                     
                     # Generate Improvement Suggestions
                     improvement_suggestions = improvement_engine.generate_resume_improvement_suggestions(resume_text)
-                    logger.info("Resume improvement suggestions generated")
+                    # logger.info("Resume improvement suggestions generated")
                     st.session_state.improvement_suggestions = improvement_suggestions
 
                     # Display Suggestions
@@ -304,7 +304,7 @@ def Job_assistant():
                 
             except Exception as e:
                     st.error(f"Resume Improvement Analysis Error: {e}")
-                    logger.error(f"Resume Improvement Analysis Error: {e}")
+                    # logger.error(f"Resume Improvement Analysis Error: {e}")
 
 
     with tab2:
@@ -386,7 +386,7 @@ def Job_assistant():
                 
                 except Exception as e:
                     st.error(f"Job Search Error: {e}")
-                    logger.error(f"Job Search Error: {e}")
+                    # logger.error(f"Job Search Error: {e}")
         # col1, col2, col3, col4 = st.columns(4)
         
         # with col1:

@@ -5,26 +5,26 @@ import streamlit as st
 import pandas as pd
 
 # Configure logging
-logging.basicConfig(level=logging.DEBUG , format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+# logging.basicConfig(level=logging.DEBUG , format='%(asctime)s - %(levelname)s - %(message)s')
+# logger = logging.getLogger(__name__)
 
 
 class CVAnalyzer:
 
     def __init__(self):
         # Initialize Groq LLM
-        logger.info("Initializing CVAnalyzer")
+        # logger.info("Initializing CVAnalyzer")
 
         self.llm = extr.initialize_llm()  # Updated to use the new function
         
-        logger.info(" LLM initialized")
+        # logger.info(" LLM initialized")
         # Initialize embeddings (if needed)
         # self.embeddings = HuggingFaceEmbeddings(
         #     model_name="sentence-transformers/all-mpnet-base-v2"
         # )
 
     def load_document(self, file_path: str) -> str:
-        logger.info(f"Loading document from file: {file_path}")
+        # logger.info(f"Loading document from file: {file_path}")
 
         """Load document based on file type."""
 
@@ -34,22 +34,22 @@ class CVAnalyzer:
             loader = TextLoader(file_path)
         documents = loader.load()
 
-        logger.info(f"Document loaded from {file_path}")
+        # logger.info(f"Document loaded from {file_path}")
 
         return " ".join([doc.page_content for doc in documents])
 
     def extract_cv_info(self, cv_text: str) -> list[extr.cv]: # referring to cv class in extraction.py
-        logger.info("Extracting CV information")
+        # logger.info("Extracting CV information")
 
         """Extract structured information from CV text using new extraction method."""
 
         extracted_data = extr.extract_cv_data(cv_text)
-        logger.info(f"Extracted {len(extracted_data)} candidate(s) from CV")
+        # logger.info(f"Extracted {len(extracted_data)} candidate(s) from CV")
         return extracted_data
         # return extr.extract_cv_data(cv_text) 
 
     def calculate_match_score(self, cv_info: dict, jd_requirements: dict) -> dict:
-        logger.info(f"Calculating match score for CV: {cv_info.get('name', 'Unknown')}")
+        # logger.info(f"Calculating match score for CV: {cv_info.get('name', 'Unknown')}")
 
         """Calculate match score between CV and job requirements."""
 
@@ -80,7 +80,7 @@ class CVAnalyzer:
             if component != "overall_score"
         )
         
-        logger.debug(f"Match score for {cv_info.get('name', 'Unknown')}: {score_components['overall_score']:.2%}")
+        # logger.debug(f"Match score for {cv_info.get('name', 'Unknown')}: {score_components['overall_score']:.2%}")
 
         return score_components
 
@@ -209,7 +209,7 @@ class CVAnalyzer:
 
 
 def create_cv_shortlisting_page():
-    logger.info("Starting CV shortlisting system")
+    # logger.info("Starting CV shortlisting system")
 
     # Initialize session state if not already initialized
     if 'jd_text' not in st.session_state:
@@ -261,7 +261,7 @@ def create_cv_shortlisting_page():
         st.session_state.uploaded_files = uploaded_files
 
     if st.button("Analyze CVs") and uploaded_files and jd_text:
-        logger.info("Analyzing uploaded CVs")
+        # logger.info("Analyzing uploaded CVs")
         with st.spinner('Analyzing CVs...'):
             analyzer = CVAnalyzer()
             
@@ -301,10 +301,11 @@ def create_cv_shortlisting_page():
                         st.session_state.results.append(result)
                         
                 except Exception as e:
-                    logger.error(f"Error processing CV: {str(e)}")
+                    st.error(f"Error processing CV: {str(e)}")
+                    # logger.error(f"Error processing CV: {str(e)}")
             
         # Display results
-        logger.info(f"Displaying analyzed results for {len(results)} candidate(s)")
+        # logger.info(f"Displaying analyzed results for {len(results)} candidate(s)")
         
         if st.session_state.results:
             df = pd.DataFrame(st.session_state.results)
@@ -312,6 +313,6 @@ def create_cv_shortlisting_page():
             st.dataframe(df)
             st.session_state.analysis_complete = True
         else:
-            logger.warning("No valid candidates found in uploaded CVs")
+            # logger.warning("No valid candidates found in uploaded CVs")
             st.error("No valid results found from CV analysis")
             st.session_state.analysis_complete = False

@@ -6,8 +6,8 @@ import re
 import os
 import logging
 
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+# logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+# logger = logging.getLogger(__name__)
 
 
 os.environ['GROQ_API_KEY'] = os.getenv("GROQ_API_KEY")
@@ -22,7 +22,7 @@ class ResumeImprovementEngine:
         #     max_tokens=4096
         # )
         self.client = Groq(api_key=groq_api_key)
-        logger.info("ResumeImprovementEngine initialized with Groq API key.")
+        # logger.info("ResumeImprovementEngine initialized with Groq API key.")
 
     def generate_resume_improvement_suggestions(self, resume_text: str) -> dict[str, Any]:
             """
@@ -79,7 +79,7 @@ class ResumeImprovementEngine:
             """
             
             try:
-                logger.info("Sending request to Groq for resume improvement.")
+                # logger.info("Sending request to Groq for resume improvement.")
                 # Make API call to generate improvement suggestions
                 chat_completion = self.client.chat.completions.create(
                     messages=[
@@ -99,19 +99,19 @@ class ResumeImprovementEngine:
                     stream=False
                 )
 
-                logger.info("Groq API response received.")
+                # logger.info("Groq API response received.")
                 
                 # Extract and parse the JSON response
                 response_text = chat_completion.choices[0].message.content
                 suggestions = self._extract_json(response_text)
 
-                logger.debug(f"Improvement suggestions received: {suggestions}")
+                # logger.debug(f"Improvement suggestions received: {suggestions}")
                 
                 return suggestions
             
             except Exception as e:
                 st.error(f"Resume Improvement Error: {e}")
-                logger.error(f"Resume Improvement Error: {e}")
+                # logger.error(f"Resume Improvement Error: {e}")
                 return {}
             
     
@@ -126,19 +126,19 @@ class ResumeImprovementEngine:
             Dict of extracted JSON or empty dict
         """
         try:
-            logger.debug("Extracting JSON from response text.")
+            # logger.debug("Extracting JSON from response text.")
 
             json_match = re.search(r'\{.*\}', text, re.DOTALL | re.MULTILINE)
             if json_match:
                 return json.loads(json_match.group(0))
             
-            logger.warning("No valid JSON found in response text.")
+            # logger.warning("No valid JSON found in response text.")
 
             return {}
         
         except Exception as e:
             st.error(f"JSON Extraction Error: {e}")
-            logger.error(f"JSON Extraction Error: {e}")
+            # logger.error(f"JSON Extraction Error: {e}")
             return {}
         
 
