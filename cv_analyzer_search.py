@@ -359,7 +359,7 @@ def Job_assistant():
                     jobs = scrape_jobs(
                         site_name=site_name,
                         search_term=search_term,
-                        google_search_term=f"{search_term} jobs near {location}",
+                        # google_search_term=f"{search_term} jobs near {location}",
                         location=location,
                         results_wanted=results_wanted,
                         hours_old=hours_old,
