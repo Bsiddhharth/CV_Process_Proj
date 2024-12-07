@@ -39,10 +39,11 @@ class ResumeImprovementEngine:
             Resume Content:
             {resume_text}
 
+            (minimum 50 word explanation for each)
             Tasks:
             1. Provide a structured analysis of resume strengths and weaknesses
             2. Offer specific, actionable improvement recommendations
-            3. Suggest additional sections or content enhancements
+            3. Suggest additional sections or content enhancements 
             4. Provide writing and formatting advice
             5. Respond in detailed, structured JSON format
 
@@ -92,7 +93,7 @@ class ResumeImprovementEngine:
                             "content": prompt
                         }
                     ],
-                    model="llama3-8b-8192",
+                    model="mixtral-8x7b-32768",
                     temperature=0.7,
                     max_tokens=2048,
                     top_p=1,

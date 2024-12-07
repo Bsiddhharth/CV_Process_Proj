@@ -66,7 +66,7 @@ def initialize_llm() -> ChatGroq:
         raise ValueError("GROQ_API_KEY environment variable is missing.")
 
 
-    return ChatGroq(groq_api_key=groq_api_key, model_name="llama-3.1-70b-versatile", temperature=0.6)
+    return ChatGroq(groq_api_key=groq_api_key, model_name="llama-3.3-70b-versatile", temperature=0.6)
 
 
 def extract_cv_data(text: str) -> list[cv]:
