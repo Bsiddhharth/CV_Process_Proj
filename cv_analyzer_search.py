@@ -1,17 +1,9 @@
 import streamlit as st
 import pandas as pd
-from langchain_groq import ChatGroq
 from groq import Groq
 from jobspy import scrape_jobs
 from resume_advance_analysis import *
 from extraction import *
-# (
-#     cv,  
-#     extract_cv_data, 
-#     process_file,  # File processing function
-#     initialize_llm,  # LLM initialization function
-#     display_candidates_info  # Candidate info display function
-# )
 from typing import List, Dict, Any
 import json
 import re
@@ -26,6 +18,7 @@ def make_clickable_link(link):
 
 # os.environ['GROQ_API_KEY'] = os.getenv("GROQ_API_KEY")
 # groq_api_key = os.getenv("GROQ_API_KEY")
+
 groq_api_key = st.secrets["GROQ_API_KEY"]
 
 # Configure logging
@@ -387,97 +380,4 @@ def Job_assistant():
                 except Exception as e:
                     st.error(f"Job Search Error: {e}")
                     # logger.error(f"Job Search Error: {e}")
-        # col1, col2, col3, col4 = st.columns(4)
-        
-        # with col1:
-        #     site_name = st.multiselect(
-        #         "Select Job Sites", 
-        #         ["indeed", "linkedin", "zip_recruiter", "glassdoor", "google"], 
-        #         default=st.session_state.site_name
-        #         # default=["indeed", "glassdoor"]
-        #     )
-        #     st.session_state.site_name = site_name
-
-        # with col2:
-        #     search_term = st.text_input("Search Term", st.session_state.search_term)
-        #     st.session_state.search_term = search_term
-        
-        # with col3:
-        #     location = st.text_input("Location", st.session_state.location)
-        #     st.session_state.location = location
-
-        
-        # with col4:
-        #     results_wanted = st.number_input("Number of Results", min_value=1, max_value=100, value=st.session_state.results_wanted)
-        #     st.session_state.results_wanted = results_wanted
-
-        # # Additional parameters
-        # col5, col6 = st.columns(2)
-        
-        # with col5:
-        #     hours_old = st.number_input("Jobs Posted Within (hours)", min_value=1, max_value=168, value=st.session_state.hours_old)
-        #     st.session_state.hours_old = hours_old
-
-        # with col6:
-        #     country_indeed = st.text_input("Country (for Indeed)", st.session_state.country_indeed)
-        #     st.session_state.country_indeed = country_indeed
-
-        # search_button_clicked = st.button("Search Jobs") 
-
-        # # Search Button
-        # # if st.button("Search Jobs"):
-        # if search_button_clicked:
-        #     with st.spinner("Searching Jobs..."):
-        #         # Perform job search
-        #         try:
-        #             logger.info(f"Performing job search with {search_term} in {location}")
-        #             # jobs = scrape_jobs(
-        #             #     site_name=site_name,
-        #             #     search_term=search_term,
-        #             #     google_search_term=f"{search_term} jobs near {location}",
-        #             #     location=location,
-        #             #     results_wanted=results_wanted,
-        #             #     hours_old=hours_old,
-        #             #     country_indeed=country_indeed,
-        #             # )
-        #             jobs = scrape_jobs(
-        #                 site_name=st.session_state.site_name,
-        #                 search_term=st.session_state.search_term,
-        #                 google_search_term=f"{st.session_state.search_term} jobs near {st.session_state.location}",
-        #                 location=st.session_state.location,
-        #                 results_wanted=st.session_state.results_wanted,
-        #                 hours_old=st.session_state.hours_old,
-        #                 country_indeed=st.session_state.country_indeed,
-        #             )
-        #             st.session_state.job_search_results = jobs
-
-        #             if len(jobs) > 0:
-        #                 st.success(f"Found {len(jobs)} jobs")
-                        
-        #                 jobs_filtered = jobs[['site', 'job_url', 'title', 'company', 'location', 'date_posted']]
-        #                 # Display job data in a table
-        #                 # st.dataframe(jobs)
-        #                 jobs_filtered['job_url'] = jobs_filtered['job_url'].apply(make_clickable_link)
-        #                 st.write(jobs_filtered.to_html(escape=False), unsafe_allow_html=True)
-                        
-        #                 # st.dataframe(jobs_filtered)
-
-        #                 # Option to download jobs
-        #                 csv_file = jobs.to_csv(index=False)
-        #                 st.download_button(
-        #                     label="Download Jobs as CSV",
-        #                     data=csv_file,
-        #                     file_name='job_search_results.csv',
-        #                     mime='text/csv'
-        #                 )
-        #             else:
-        #                 st.warning("No jobs found")
-                
-        #         except Exception as e:
-        #             st.error(f"Job Search Error: {e}")
-        #             logger.error(f"Job Search Error: {e}")
-
-    
-
-# if __name__ == "__main__":
-#     main()
+   
