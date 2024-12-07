@@ -3,25 +3,7 @@ import streamlit as st
 import cv_question
 import cv_short
 import cv_analyzer_search
-# from logger import setup_logger
 
-# def initialize_session_state():
-    # """Initialize all session state variables with default values."""
-    # session_vars = {
-    #     'jd_text': "",
-    #     'min_years': 0,
-    #     'required_skills_list': [],
-    #     'uploaded_files': [],
-    #     'results': [],
-    #     'generated_questions': None,
-    #     'current_candidate_index': 0,
-    #     'processed_cvs': {},  # Store processed CV data
-    #     'analysis_complete': False
-    # }
-    
-    # for var, default_value in session_vars.items():
-    #     if var not in st.session_state:
-    #         st.session_state[var] = default_value
 
 def clear_session_state():
     """Clear all session state variables."""
