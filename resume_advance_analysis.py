@@ -10,8 +10,10 @@ import logging
 # logger = logging.getLogger(__name__)
 
 
-os.environ['GROQ_API_KEY'] = os.getenv("GROQ_API_KEY")
-groq_api_key = os.getenv("GROQ_API_KEY")
+# os.environ['GROQ_API_KEY'] = os.getenv("GROQ_API_KEY")
+# groq_api_key = os.getenv("GROQ_API_KEY")
+
+groq_api_key = st.secrets["GROQ_API_KEY"]
 
 class ResumeImprovementEngine: 
     def __init__(self):
@@ -93,7 +95,7 @@ class ResumeImprovementEngine:
                             "content": prompt
                         }
                     ],
-                    model="mixtral-8x7b-32768",
+                    model="llama-3.3-70b-versatile",
                     temperature=0.7,
                     max_tokens=2048,
                     top_p=1,

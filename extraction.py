@@ -55,11 +55,10 @@ def initialize_llm() -> ChatGroq:
 
     # os.environ['GROQ_API_KEY'] = os.getenv("GROQ_API_KEY")
     # groq_api_key = os.getenv("GROQ_API_KEY")
-    try:
-        groq_api_key = st.secrets["GROQ_API_KEY"]
+    
+    groq_api_key = st.secrets["GROQ_API_KEY"]
 
-    except:
-        groq_api_key = os.getenv("GROQ_API_KEY")
+    
 
     if not groq_api_key:
         logger.error("GROQ_API_KEY is not set")

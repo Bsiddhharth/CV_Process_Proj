@@ -1,24 +1,3 @@
-# langchain
-# python-dotenv
-# ipykernel
-# langchain-community
-# streamlit
-# pypdf
-# pymupdf
-# langchain-text-splitters
-# langchain-openai
-# chromadb
-# sentence_transformers
-# langchain_huggingface
-# faiss-cpu
-# langchain_chroma
-# openai
-# langchain-groq
-# pdfplumber
-# prettytable
-# python-jobspy
-# scikit-learn
-
 langchain==0.3.7
 python-dotenv==1.0.1
 ipykernel==6.29.5
