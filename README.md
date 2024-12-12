@@ -1,12 +1,12 @@
 ---
-title: CV
-emoji: 💻
+title: CV Process
+emoji: 🐢
 colorFrom: pink
-colorTo: gray
+colorTo: purple
 sdk: streamlit
-sdk_version: 1.41.0
+sdk_version: 1.40.2
 app_file: app.py
 pinned: false
-license: apache-2.0
-short_description: A simple cv analysis & job search
+license: mit
+short_description: A simple app to shortlist, job search, resume analysis
 ---
