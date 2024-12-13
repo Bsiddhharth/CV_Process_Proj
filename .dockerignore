@@ -1,0 +1,18 @@
+# Ignore virtual environment
+venv/
+
+# Ignore environment files
+.env
+
+# Ignore Python compiled files
+*.pyc
+__pycache__/
+
+# Ignore specific files
+extraction_pydantic.py
+cv_quest(with main).py
+logger.py
+cv_job_reco2.py
+
+# Ignore log files
+app.log
