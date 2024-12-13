@@ -17,7 +17,7 @@ def main():
     
     # initialize_session_state()
     
-    # Sidebar
+    # Sidebar #
     st.sidebar.title("Navigation")
     # app_logger.info("Sidebar navigation displayed")
     
