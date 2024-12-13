@@ -17,9 +17,9 @@ def make_clickable_link(link):
 
 
 # os.environ['GROQ_API_KEY'] = os.getenv("GROQ_API_KEY")
-# groq_api_key = os.getenv("GROQ_API_KEY")
+groq_api_key = os.getenv("GROQ_API_KEY")
 
-groq_api_key = st.secrets["GROQ_API_KEY"]
+# groq_api_key = st.secrets["GROQ_API_KEY"]
 
 # Configure logging
 # logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')

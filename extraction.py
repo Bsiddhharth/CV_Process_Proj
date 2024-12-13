@@ -54,9 +54,9 @@ def initialize_llm() -> ChatGroq:
     """Initialize the language model."""
 
     # os.environ['GROQ_API_KEY'] = os.getenv("GROQ_API_KEY")
-    # groq_api_key = os.getenv("GROQ_API_KEY")
+    groq_api_key = os.getenv("GROQ_API_KEY")
     
-    groq_api_key = st.secrets["GROQ_API_KEY"]
+    # groq_api_key = st.secrets["GROQ_API_KEY"]
 
     
 
