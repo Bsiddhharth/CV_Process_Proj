@@ -18,6 +18,12 @@ def make_clickable_link(link):
 
 # os.environ['GROQ_API_KEY'] = os.getenv("GROQ_API_KEY")
 groq_api_key = os.getenv("GROQ_API_KEY")
+if groq_api_key is None:
+        try:
+            groq_api_key = st.secrets["GROQ_API_KEY"]
+        except Exception as e:
+            st.error("GROQ_API_KEY is not set in the environment variables or Streamlit secrets.")
+            groq_api_key = None
 
 # groq_api_key = st.secrets["GROQ_API_KEY"]
 

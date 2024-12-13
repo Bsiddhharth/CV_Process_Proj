@@ -7,7 +7,7 @@ import json
 from extraction import extract_cv_data, process_file, display_candidates_info  # importing from your extraction.py
 
 # Initialize environment variables
-os.environ['GROQ_API_KEY'] = os.getenv("GROQ_API_KEY")
+# os.environ['GROQ_API_KEY'] = os.getenv("GROQ_API_KEY")
 groq_api_key = os.getenv("GROQ_API_KEY")
 
 class InterviewQuestionGenerator:
